@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Skateboard Indonesia</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    background:linear-gradient(to bottom,#05e205,#abe804);
+}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:16px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:transparent;
+    transition:.4s;
+    z-index:1000;
+}
+.navbar.scrolled{background:rgba(0,0,0,.9);}
+.nav-left{display:flex;gap:14px;align-items:center;}
+.nav-logo{color:white;font-size:1.6rem;font-weight:bold;}
+.nav-clock{color:#4caf50;background:rgba(0,0,0,.4);padding:4px 10px;border-radius:6px;}
+.nav-menu{display:flex;gap:30px;list-style:none;}
+.nav-menu a{color:white;text-decoration:none;}
+.active{color:#4caf50;}
+
+/* HEADER */
+.header{
+    height:65vh;
+    background:url("gambarUAS/hr.jpeg") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+.header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.65);
+}
+.header-content{
+    position:relative;
+    color:white;
+    text-align:center;
+    max-width:800px;
+    padding:20px;
+}
+
+/* CONTENT */
+.container{
+    padding:80px 10%;
+}
+.intro{text-align:center;margin-bottom:40px;}
+.intro h2{color:#1b5e20;}
+.content{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+}
+@media(max-width:900px){
+    .content{grid-template-columns:1fr;}
+}
+
+.info,.form{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 8px 15px rgba(0,0,0,.15);
+}
+.form input,.form textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+}
+.form button{
+    width:100%;
+    padding:12px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:30px;
+}
+
+/* FOOTER */
+footer{
+    background:#1b5e20;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar" id="navbar">
+<div class="nav-left">
+    <span class="nav-logo">Skateboard</span>
+    <span class="nav-clock" id="clock">00:00:00</span>
+</div>
+
+<ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="profile.html">Profile</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+</ul>
+</nav>
+
+<header class="header">
+<div class="header-content">
+<h1>Skateboard Indonesia</h1>
+<p>Komunitas skateboard yang mendukung kreativitas dan budaya street Indonesia</p>
+</div>
+</header>
+
+<div class="container">
+<div class="intro">
+<h2>Hubungi Kami</h2>
+<p>Mari terhubung dan berkembang bersama Skateboard Indonesia</p>
+</div>
+
+<div class="content">
+
+<div class="info">
+<h3>Informasi Kontak</h3>
+<p>🛹 Skateboard Indonesia</p>
+<p>📍 Jakarta, Indonesia</p>
+<p>✉️ skateboardindonesia@gmail.com</p>
+<p>📞 0812-3456-7890</p>
+</div>
+
+<div class="form">
+<h3>Kirim Pesan</h3>
+<input id="nama" placeholder="Nama">
+<input id="email" type="email" placeholder="Email">
+<textarea id="pesan" rows="5" placeholder="Pesan"></textarea>
+<button onclick="kirimPesan()">Kirim</button>
+</div>
+
+</div>
+</div>
+
+<footer>
+<p>🛹 Skateboard Indonesia • Street • Freedom • Creativity</p>
+</footer>
+
+<script>
+function kirimPesan(){
+    let n=nama.value,e=email.value,p=pesan.value;
+    if(!n||!e||!p) alert("Lengkapi semua data!");
+    else{
+        alert("Terima kasih "+n+" 🛹");
+        nama.value=email.value=pesan.value="";
+    }
+}
+function updateClock(){
+    clock.innerText=new Date().toLocaleTimeString();
+}
+setInterval(updateClock,1000);updateClock();
+window.addEventListener("scroll",()=>navbar.classList.toggle("scrolled",scrollY>50));
+</script>
+
+</body>
+</html>

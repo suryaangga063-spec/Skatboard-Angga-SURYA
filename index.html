@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skateboard Indonesia</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background-color: darkgrey;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: transparent;
+            transition: 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-clock {
+            color: #4caf50;
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.4);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .active {
+            color: #4caf50;
+        }
+
+        /* BANNER */
+        .banner {
+            height: 80vh;
+            background-image: url("gambarUAS/nb.jpg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .banner::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .banner-content {
+            position: relative;
+            color: #4dde05;
+            text-align: center;
+        }
+
+        .banner-content h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* CONTENT */
+        .container {
+            padding: 40px;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="nav-left">
+        <span class="nav-logo">Skateboard</span>
+        <span class="nav-clock" id="clock">00:00:00</span>
+    </div>
+
+    <ul class="nav-menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="banner">
+    <div class="banner-content">
+        <h1>Selamat Datang di Skateboard Indonesia</h1>
+        <p>Jelajahi Dunia Skateboard dan Trik Keren</p>
+    </div>
+</section>
+
+<div class="container">
+    <h2>Apa Itu Dunia Skateboard</h2>
+    <p>
+        Dunia skateboard adalah budaya olahraga ekstrem yang menggunakan papan
+        beroda untuk melakukan berbagai trik dan gerakan.
+    </p>
+
+    <h2>Trik Skateboard</h2>
+    <h3>1. Ollie</h3>
+    <p>Trik dasar untuk melompat tanpa tangan.</p>
+
+    <h3>2. Kickflip</h3>
+    <p>Memutar papan ke depan menggunakan kaki.</p>
+
+    <h3>3. Heelflip</h3>
+    <p>Flip papan menggunakan tumit.</p>
+</div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        document.getElementById("clock").innerText =
+            now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    window.addEventListener("scroll", () => {
+        document.getElementById("navbar")
+            .classList.toggle("scrolled", window.scrollY > 50);
+    });
+</script>
+
+</body>
+</html>

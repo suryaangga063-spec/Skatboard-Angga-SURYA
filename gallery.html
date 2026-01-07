@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Skateboard Indonesia</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #67f409, #e81616);
+        }
+        
+        .header {
+            position: relative;
+            width: 100%;
+            height: 65vh;
+            min-height: 380px;
+            background-image: url("Gallery Skateboard Indonesia");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.75)
+            );
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            max-width: 900px;
+            animation: fadeUp 1.2s ease;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .header-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            border-radius: 50px;
+            background-color: #2e7d32;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .header-btn:hover {
+            background-color: #1b5e20;
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header {
+                height: 55vh;
+            }
+
+            .header-content h1 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                height: 50vh;
+                min-height: 300px;
+            }
+
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .header-content p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content h1 {
+                font-size: 1.6rem;
+            }
+
+            .header-btn {
+                padding: 10px 22px;
+                font-size: 14px;
+            }
+        }
+
+        .carousel {
+            width: 100%;
+            max-width: 1000px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .slides img {
+            width: 100%;
+            flex-shrink: 0;
+            height: 450px;
+            object-fit: cover;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+        }
+
+        .caption h2 {
+            margin: 0;
+        }
+
+        .caption p {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .slides img {
+            height: 280px;
+            }
+        }
+
+
+        .title {
+            text-align: center;
+            margin: 40px 20px 20px;
+        }
+
+        .title h2 {
+            color: #2e7d32;
+        }
+
+        .title p {
+            color: #555;
+        }
+
+        footer {
+            margin-top: 10px;
+            background-color: #1b5e20;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-top-right-radius: 50px;
+        }
+
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+
+            background: transparent;
+            transition: 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #4caf50;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: rgba(0,0,0,0.9);
+            border-radius: 6px;
+            min-width: 200px;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu li:hover .dropdown {
+            display: block;
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+
+        @media (max-width: 768px) {
+            .navbar {
+            padding: 14px 24px;
+            }
+
+            .nav-toggle {
+            display: block;
+            }
+
+        .nav-menu {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0,0,0,0.95);
+            transition: height 0.4s ease;
+        }
+
+        .nav-menu.active {
+            height: 300px;
+            padding-top: 20px;
+        }
+
+        .nav-menu li:hover .dropdown {
+            display: none;
+        }
+
+        .dropdown {
+            position: static;
+            background: none;
+        }
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .nav-clock {
+            color: #4caf50;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-clock {
+                font-size: 0.85rem;
+            }
+        }
+        .content{
+            width: 900px;
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+        }
+        .active{
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+
+<body>
+
+    <link rel="stylesheet" href="nav.css">
+
+    <nav class="navbar" id="navbar">
+    <div class="nav-left">
+        <span class="nav-logo">Skateboard</span>
+        <span class="nav-clock" id="clock">00:00:00</span>
+    </div>
+
+    <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+
+    <ul class="nav-menu" id="navMenu">
+        <li><a href="Index.html">Home</a></li>
+        <li><a href="Profile.html">Profile</a></li>
+        <li><a href="Gallery.html" class="active">Gallery</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+    </ul>
+    </nav>
+
+    <script>
+    function updateClock() {
+    const now = new Date();
+    let hours = now.getHours().toString().padStart(2, '0');
+    let minutes = now.getMinutes().toString().padStart(2, '0');
+    let seconds = now.getSeconds().toString().padStart(2, '0');
+
+    document.getElementById("clock").innerText =
+        hours + ":" + minutes + ":" + seconds;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("active");
+    }
+
+    function closeMenu() {
+    document.getElementById("navMenu").classList.remove("active");
+    }
+
+    window.addEventListener("scroll", function () {
+    document.getElementById("navbar")
+        .classList.toggle("scrolled", window.scrollY > 50);
+    });
+    </script>
+
+    <header class="header">
+    <div class="header-content">
+        <h1>Gallery Skateboard Indonesia</h1>
+        <h2>Street Culture • Action • Creativity</h2>
+        <p>
+            Skateboard Indonesia adalah bagian dari budaya jalanan yang penuh
+            kreativitas, kebebasan, dan semangat komunitas anak muda.
+        </p>
+    </div>
+    </header>
+
+
+    <div class="carousel">
+    <div class="slides">
+        <img src="Sketpark_Jakarta.jpg.jpeg">
+        <img src="Skatepark_Bandung.jpg.jpeg">
+        <img src="Skatepark_Bali.jpg.jpeg">
+        <img src="Skatepark_Surabaya.jpg.jpeg">
+        <img src="Skatepark_jogja.jpg.jpeg">
+    </div>
+
+    <div class="caption">
+        <h2 id="judul">Skateboard Indonesssia</h2>
+        <p id="deskripsi">Aksi skateboard Indonesia yang menampilkan trik, gaya,
+                          dan semangat kebebasan di jalanan dan skatepark.
+        </p>
+    </div>
+    </div>
+
+    <script>
+    let index = 0;
+    const slides = document.querySelector(".slides");
+    const judul = document.getElementById("judul");
+    const deskripsi = document.getElementById("deskripsi");
+
+    const data = [
+        {
+            j: "Skatepark Jakarta",
+            d: "Komunitas skateboard yang berkembang pesat di berbagai kota indonesia."
+        },
+        {
+            j: "Skatepark Bandung",
+            d: "Skateboard mulai populer di Indonesia sejak era 1990-an dan terus berkembang."
+        },
+        {
+            j: "Skatepark Bali",
+            d: "Banyak skate park tersedia di Jakarta, Bandung, Bali, Surabaya, dan jogja."
+        },
+        {
+            j: "Skatepark Surabaya",
+            d: "Skater Indonesia mulai bersaing di ajang nasional dan internasional."
+        },
+        {
+            j: "Skatepark jogja",
+            d: "Skateboard menjadi bagian dari gaya hidup dan budaya street anak muda."
+        }
+    ];
+
+    function nextSlide() {
+        index++;
+        if (index >= data.length) {
+            index = 0;
+        }
+
+        slides.style.transform = `translateX(-${index * 100}%)`;
+        judul.innerText = data[index].j;
+        deskripsi.innerText = data[index].d;
+    }
+
+    setInterval(nextSlide, 3500);
+    </script>
+
+    <footer>
+        <p>🛹 Jelajahi Sketpark Indonesia 🛹 </p>
+    </footer>
+
+</body>
+</html>
