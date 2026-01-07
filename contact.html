@@ -40,6 +40,7 @@ body{
 
 /* HEADER */
 .header{
+    margin-top:80px;
     height:65vh;
     background:url("gambarUAS/hr.jpeg") center/cover no-repeat;
     display:flex;
@@ -94,6 +95,7 @@ body{
     color:white;
     border:none;
     border-radius:30px;
+    cursor:pointer;
 }
 
 /* FOOTER */
@@ -150,7 +152,7 @@ footer{
 <input id="nama" placeholder="Nama">
 <input id="email" type="email" placeholder="Email">
 <textarea id="pesan" rows="5" placeholder="Pesan"></textarea>
-<button onclick="kirimPesan()">Kirim</button>
+<button type="button" onclick="kirimPesan()">Kirim</button>
 </div>
 
 </div>
@@ -162,18 +164,31 @@ footer{
 
 <script>
 function kirimPesan(){
-    let n=nama.value,e=email.value,p=pesan.value;
-    if(!n||!e||!p) alert("Lengkapi semua data!");
-    else{
+    let n=document.getElementById("nama").value;
+    let e=document.getElementById("email").value;
+    let p=document.getElementById("pesan").value;
+
+    if(!n||!e||!p){
+        alert("Lengkapi semua data!");
+    }else{
         alert("Terima kasih "+n+" 🛹");
-        nama.value=email.value=pesan.value="";
+        document.getElementById("nama").value="";
+        document.getElementById("email").value="";
+        document.getElementById("pesan").value="";
     }
 }
+
 function updateClock(){
-    clock.innerText=new Date().toLocaleTimeString();
+    document.getElementById("clock").innerText =
+    new Date().toLocaleTimeString();
 }
-setInterval(updateClock,1000);updateClock();
-window.addEventListener("scroll",()=>navbar.classList.toggle("scrolled",scrollY>50));
+setInterval(updateClock,1000);
+updateClock();
+
+window.addEventListener("scroll",()=>{
+    document.getElementById("navbar")
+    .classList.toggle("scrolled",window.scrollY>50);
+});
 </script>
 
 </body>
